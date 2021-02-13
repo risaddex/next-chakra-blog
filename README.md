@@ -1,2 +1,2 @@
 # personal-blog-template
-An try of enhance UX/UI design abilities
+A try of enhance UX/UI design abilities
