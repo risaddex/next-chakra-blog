@@ -1,2 +1,2 @@
-# personal-blog-template
-A try of enhance UX/UI design abilities, aswell get started with TS 3.x
+# NextJS + Chakra-UI + Typescript
+A try of enhance my UX/UI design (in)abilities, aswell get started with TS 3.x
