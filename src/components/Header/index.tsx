@@ -1,5 +1,5 @@
+import { Flex, FlexProps } from '@chakra-ui/react';
 import React from 'react';
-import { Divider, Flex, FlexProps } from '@chakra-ui/react';
 import { Navbar } from './Navbar';
 
 export function Header(props: FlexProps) {
@@ -8,13 +8,13 @@ export function Header(props: FlexProps) {
       as="header"
       flexDirection="column"
       mt="0"
-      h="30vh"
+      mb="0.5"
       w="100vw"
       bg="red.500"
       {...props}
     >
       <Navbar />
-      <Divider />
+      {/* <Divider /> */}
     </Flex>
   );
 }
