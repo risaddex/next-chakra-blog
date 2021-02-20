@@ -32,3 +32,11 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+// .eslintignore
+.prettierrc
+.eslintrc
+build/*
+public/*
+src/react-app-env.d.ts
+src/serviceWorker.ts

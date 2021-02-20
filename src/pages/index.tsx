@@ -1,25 +1,22 @@
-import {
- Text
-} from '@chakra-ui/react'
-import { Container } from '../components/Container'
-import { DarkModeSwitch } from '../components/DarkModeSwitch'
-import { Footer } from '../components/Footer'
-import { Header } from '../components/Header'
-import { Main } from '../components/Main'
-
+import { Text } from '@chakra-ui/react';
+import React from 'react';
+import { Container } from '../components/Container';
+import { Footer } from '../components/Footer';
+import { Header } from '../components/Header';
+import { Main } from '../components/Main';
 
 const Index = () => (
   <Container height="100vh">
-    <Header/>
-    <Main h="100%">
-      aaaa
-    </Main>
+    <Header />
 
-    <DarkModeSwitch />
-    <Footer m="0" p="0">
+    <Container>
+      <Main h="100%">aaaa</Main>
+    </Container>
+
+    <Footer>
       <Text>Next ❤️ Chakra</Text>
     </Footer>
   </Container>
-)
+);
 
-export default Index
+export default Index;
