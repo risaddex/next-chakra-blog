@@ -6,7 +6,7 @@ export function Header(props: FlexProps) {
   return (
     <Flex
       as="header"
-      flexDirection="column"
+      // flexDirection="column"
       mt="0"
       mb="0.5"
       w="100vw"

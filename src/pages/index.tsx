@@ -1,7 +1,7 @@
-import { HStack, Text, Box } from '@chakra-ui/react';
+import { Box, HStack, Text } from '@chakra-ui/react';
 import React from 'react';
-import { CustomCarousel } from '../components/Carousel';
 import { Container } from '../components/Container';
+import { CustomCarousel } from '../components/CustomCarousel';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { Main } from '../components/Main';
@@ -17,9 +17,9 @@ const Index = () => (
       justifyContent="space-between"
       align="center"
     >
-      <Box as="aside">sidebar content</Box>
+      <Box>aa</Box>
 
-      <Main bg="blue.500" pr="1">
+      <Main bg="blue.500">
         <CustomCarousel />
       </Main>
     </HStack>
