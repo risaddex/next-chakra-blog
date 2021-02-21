@@ -1,4 +1,4 @@
-import { Box, HStack, Spacer, Text } from '@chakra-ui/react';
+import { Box, HStack, Text } from '@chakra-ui/react';
 import { InferGetStaticPropsType } from 'next';
 import React from 'react';
 import { Container } from '../components/Container';
@@ -24,15 +24,14 @@ const Index = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => (
     >
       <Box>aa</Box>
 
-      <Main bg="blue.500">
+      <Main bg="blue.500" px="1" pb="2">
         <CustomCarousel />
         <Feed posts={posts} />
       </Main>
-      
     </HStack>
 
     <Footer>
-      <Text>Danilo Romano  </Text>
+      <Text>Danilo Romano </Text>
     </Footer>
   </Container>
 );
