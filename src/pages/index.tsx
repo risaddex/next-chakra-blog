@@ -2,9 +2,12 @@ import { Box, HStack, Text } from '@chakra-ui/react';
 import React from 'react';
 import { Container } from '../components/Container';
 import { CustomCarousel } from '../components/CustomCarousel';
+import Feed from '../components/Feed';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { Main } from '../components/Main';
+import { getStaticProps } from '../components/Feed/index';
+
 
 const Index = () => (
   <Container height="100vh">
@@ -21,6 +24,7 @@ const Index = () => (
 
       <Main bg="blue.500">
         <CustomCarousel />
+        <Feed posts={getStaticProps} />  
       </Main>
     </HStack>
 
