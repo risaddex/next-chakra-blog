@@ -6,7 +6,6 @@ import Feed from '../components/Feed';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { Main } from '../components/Main';
-import { getStaticProps } from '../components/Feed/index';
 
 
 const Index = () => (
@@ -24,7 +23,7 @@ const Index = () => (
 
       <Main bg="blue.500">
         <CustomCarousel />
-        <Feed posts={getStaticProps} />  
+        <Feed />  
       </Main>
     </HStack>
 
