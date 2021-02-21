@@ -1,4 +1,5 @@
-import { Box, HStack, Text } from '@chakra-ui/react';
+import { Box, HStack, Spacer, Text } from '@chakra-ui/react';
+import { InferGetStaticPropsType } from 'next';
 import React from 'react';
 import { Container } from '../components/Container';
 import { CustomCarousel } from '../components/CustomCarousel';
@@ -6,16 +7,18 @@ import Feed from '../components/Feed';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { Main } from '../components/Main';
+import { IPost } from '../types/types';
 
+const API_URL: string = 'https://jsonplaceholder.typicode.com/posts';
 
-const Index = () => (
-  <Container height="100vh">
+const Index = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => (
+  <Container height="100%" overflowX="auto">
     <Header />
 
     <HStack
       h="100%"
       w="100%"
-      spacing="25px"
+      // spacing="25px"
       justifyContent="space-between"
       align="center"
     >
@@ -23,14 +26,26 @@ const Index = () => (
 
       <Main bg="blue.500">
         <CustomCarousel />
-        <Feed />  
+        <Feed posts={posts} />
       </Main>
+      
     </HStack>
 
     <Footer>
-      <Text>Next ❤️ Chakra</Text>
+      <Text>Danilo Romano  </Text>
     </Footer>
   </Container>
 );
+
+export async function getStaticProps() {
+  const res = await fetch(API_URL);
+  const posts: IPost[] = await res.json();
+
+  return {
+    props: {
+      posts,
+    },
+  };
+}
 
 export default Index;

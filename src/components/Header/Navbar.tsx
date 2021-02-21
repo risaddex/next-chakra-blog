@@ -15,7 +15,6 @@ import { CustomBellIcon } from '../Icons';
 export const Navbar = () => (
   <Flex
     as="nav"
-    w="100%"
     bg="transparent"
     align="center"
     px="4"

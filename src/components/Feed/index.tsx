@@ -1,40 +1,23 @@
-import { Box } from '@chakra-ui/react';
-import { GetStaticProps } from 'next';
-import React, { useEffect, useState } from 'react';
-import { Post } from '../../utils/types';
+import { Spinner, Stack } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { IPost } from '../../types/types';
+import { Post } from './Post';
 
-interface BlogProps {
-  posts: Post[]
-}
+type Props = {
+  posts: IPost[];
+};
 
-export default function Feed({ posts }) {
-  const [isLoading, setIsLoading] = useState(true);
+export default function Feed({ posts }: Props) {
+  const [postList, setPostList] = useState(posts);
+  const STARTER_SIZE = 10;
 
-  useEffect(() => {
-    //getStaticProps();
-
-  }, []);
+  if (!postList) return <Spinner />;
 
   return (
-    <Box>
-      {posts.map((post:Post) => (
-        <Box as="article" key={`${post.postId}`}>
-          {post}
-        </Box>
+    <Stack px="2" spacing="8">
+      {postList.map((post: IPost) => (
+        <Post key={post.id} post={post} />
       ))}
-    </Box>
+    </Stack>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch(
-    'https://6031a22f081a010017547228.mockapi.io/api/posts/:blogs'
-  );
-  const posts = await res.json();
-
-  return {
-    props: {
-      posts,
-    },
-  };
-};

@@ -1,11 +1,12 @@
-import { StackProps, VStack } from '@chakra-ui/react';
+import { StackProps, Stack } from '@chakra-ui/react';
 import React from 'react';
 
 export const Main = (props: StackProps) => (
-  <VStack
+  <Stack
     as="main"
+    height="100% "
     spacing="1.5rem"
-    height="100%"
+    alignContent="space-between"
     width="100%"
     maxWidth="48rem"
     {...props}
