@@ -4,7 +4,7 @@ import React from 'react';
 export const Main = (props: StackProps) => (
   <Stack
     as="main"
-    height="100% "
+    height="100%"
     spacing="1.5rem"
     alignContent="space-between"
     width="100%"

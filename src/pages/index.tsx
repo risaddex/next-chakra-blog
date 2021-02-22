@@ -1,5 +1,4 @@
-import { Box, HStack, Text } from '@chakra-ui/react';
-import data from '../../data.json'
+import { Box, HStack, Text, extendTheme, GlobalStyle } from '@chakra-ui/react';
 import { InferGetStaticPropsType } from 'next';
 import React from 'react';
 import { Container } from '../components/Container';
@@ -10,45 +9,45 @@ import { Header } from '../components/Header';
 import { Main } from '../components/Main';
 import { IPost } from '../types/types';
 
-
-const posts = data;
-
 const API_URL: string = 'https://jsonplaceholder.typicode.com/posts';
 
-const Index = (/* { posts }: InferGetStaticPropsType<typeof getStaticProps> */) => (
-  <Container height="100%" overflowX="auto">
-    <Header />
+const Index = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
-    <HStack
-      h="100%"
-      w="100%"
-      // spacing="25px"
-      justifyContent="space-between"
-      align="center"
-    >
-      <Box>aa</Box>
+  return (
+    <Container height="100%" overflowX="auto">
+      <Header />
 
-      <Main bg="blue.500" px="1" pb="2">
-        <CustomCarousel />
-        <Feed posts={posts} />
-      </Main>
-    </HStack>
+      <HStack
+        h="100%"
+        w="100%"
+        // spacing="25px"
+        justifyContent="space-between"
+        align="center"
+      >
+        <Box>aa</Box>
 
-    <Footer>
-      <Text>Danilo Romano </Text>
-    </Footer>
-  </Container>
-);
+        <Main bg="blue.500" px="1" pb="2" height="100%" minH="100vh">
+          <CustomCarousel />
+          <Feed posts={posts} />
+        </Main>
+      </HStack>
 
-// export async function getStaticProps() {
-//   const res = await fetch(API_URL);
-//   const posts: IPost[] = await res.json();
+      <Footer>
+        <Text>Danilo Romano </Text>
+      </Footer>
+    </Container>
+  );
+};
 
-//   return {
-//     props: {
-//       posts,
-//     },
-//   };
-// }
+export async function getStaticProps() {
+  const res = await fetch(API_URL);
+  const posts: IPost[] = await res.json();
+
+  return {
+    props: {
+      posts,
+    },
+  };
+}
 
 export default Index;
