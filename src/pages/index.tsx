@@ -1,4 +1,5 @@
 import { Box, HStack, Text } from '@chakra-ui/react';
+import data from '../../data.json'
 import { InferGetStaticPropsType } from 'next';
 import React from 'react';
 import { Container } from '../components/Container';
@@ -9,9 +10,12 @@ import { Header } from '../components/Header';
 import { Main } from '../components/Main';
 import { IPost } from '../types/types';
 
+
+const posts = data;
+
 const API_URL: string = 'https://jsonplaceholder.typicode.com/posts';
 
-const Index = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => (
+const Index = (/* { posts }: InferGetStaticPropsType<typeof getStaticProps> */) => (
   <Container height="100%" overflowX="auto">
     <Header />
 
@@ -36,15 +40,15 @@ const Index = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => (
   </Container>
 );
 
-export async function getStaticProps() {
-  const res = await fetch(API_URL);
-  const posts: IPost[] = await res.json();
+// export async function getStaticProps() {
+//   const res = await fetch(API_URL);
+//   const posts: IPost[] = await res.json();
 
-  return {
-    props: {
-      posts,
-    },
-  };
-}
+//   return {
+//     props: {
+//       posts,
+//     },
+//   };
+// }
 
 export default Index;
