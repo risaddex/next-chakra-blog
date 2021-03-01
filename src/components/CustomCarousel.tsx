@@ -1,5 +1,5 @@
-import Carousel from 'nuka-carousel';
-import React from 'react';
+import Carousel from 'nuka-carousel'
+import React from 'react'
 
 export const CustomCarousel = () => (
   <Carousel
@@ -7,10 +7,10 @@ export const CustomCarousel = () => (
       nextButtonText: 'Próximo',
       prevButtonText: 'Anterior',
       nextButtonStyle: {
-        display: 'none'
+        display: 'none',
       },
       prevButtonStyle: {
-        display: 'none'
+        display: 'none',
       },
     }}
     height="35vh"
@@ -24,4 +24,4 @@ export const CustomCarousel = () => (
     <img src="http://placekitten.com/450/300" alt="a kitten" />
     <img src="http://placekitten.com/500/300" alt="a kitten" />
   </Carousel>
-);
+)

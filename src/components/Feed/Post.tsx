@@ -1,10 +1,10 @@
-import { Box, Heading, Spacer, Text } from '@chakra-ui/react';
-import React, { FC } from 'react';
-import { IPost } from '../../types/types';
+import { Box, Heading, Spacer, Text } from '@chakra-ui/react'
+import React, { FC } from 'react'
+import { IPost } from '../../types/types'
 
 type Props = {
-  post: IPost;
-};
+  post: IPost
+}
 
 export const Post: FC<Props> = ({ post }) => (
   <Box as="article" bg="red.200" borderRadius="2xl" px="2">
@@ -13,4 +13,4 @@ export const Post: FC<Props> = ({ post }) => (
     <br />
     <Text textAlign="justify">{post.body}</Text>
   </Box>
-);
+)
