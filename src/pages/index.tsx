@@ -1,22 +1,19 @@
-import { Box, HStack, Text, extendTheme, GlobalStyle } from '@chakra-ui/react';
-import { InferGetStaticPropsType } from 'next';
-import React from 'react';
-import { Container } from '../components/Container';
-import { CustomCarousel } from '../components/CustomCarousel';
-import Feed from '../components/Feed';
-import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
-import { Main } from '../components/Main';
-import { IPost } from '../types/types';
+import { Box, HStack, Text } from '@chakra-ui/react'
+import React from 'react'
+import { QueryClient } from 'react-query'
+import { dehydrate } from 'react-query/hydration'
+import { Container } from '../components/Container'
+import { CustomCarousel } from '../components/CustomCarousel'
+import { Feed } from '../components/Feed'
+import { Footer } from '../components/Footer'
+import { Header } from '../components/Header'
+import { Main } from '../components/Main'
+import { fetchPosts } from '../hooks/usePosts'
 
-const API_URL: string = 'https://jsonplaceholder.typicode.com/posts';
-
-const Index = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
-
+const Index = () => {
   return (
     <Container height="100%" overflowX="auto">
       <Header />
-
       <HStack
         h="100%"
         w="100%"
@@ -25,10 +22,9 @@ const Index = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         align="center"
       >
         <Box>aa</Box>
-
         <Main bg="blue.500" px="1" pb="2" height="100%" minH="100vh">
           <CustomCarousel />
-          <Feed posts={posts} />
+          <Feed />
         </Main>
       </HStack>
 
@@ -36,18 +32,18 @@ const Index = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <Text>Danilo Romano </Text>
       </Footer>
     </Container>
-  );
-};
+  )
+}
 
 export async function getStaticProps() {
-  const res = await fetch(API_URL);
-  const posts: IPost[] = await res.json();
+  const queryClient = new QueryClient()
+  await queryClient.prefetchInfiniteQuery('posts', await fetchPosts(1))
 
   return {
     props: {
-      posts,
+      dehydratedState: dehydrate(queryClient),
     },
-  };
+  }
 }
 
-export default Index;
+export default Index

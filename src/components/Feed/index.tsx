@@ -1,65 +1,55 @@
-import { Spinner, Stack } from '@chakra-ui/react';
-import React, { useCallback, useEffect, useState } from 'react';
-import { IPost } from '../../types/types';
-import { Post } from './Post';
+import { Box, Spinner, Stack } from '@chakra-ui/react'
+import React, { useRef, useState } from 'react'
+import { IPost } from '../../types/types'
+import { Post } from './Post'
 
-type Props = {
-  posts: IPost[];
-};
+import useIntersectionObserver from '../../hooks/useIntersectionObserver'
+import { usePosts } from '../../hooks/usePosts'
 
-export default function Feed({ posts }: Props) {
-  const [postList, setPostList] = useState(posts);
-  const [loadedPosts, setLoadedPosts] = useState<IPost[]>([]);
-  const [currentPostId, setCurrentPostId] = useState(0);
-  const [isEndOfPage, setIsEndOfPage] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+export const Feed = () => {
+  const {
+    data,
+    isLoading,
+    isFetching,
+    status,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = usePosts(1)
 
-  const handleEndOfPage = useCallback((event: Event): void => {
-    // 80% of page Y offset triggers a new fetch/ Load
-    if (
-      window.pageYOffset + window.innerHeight >=
-      document.documentElement.offsetHeight * 0.99
+  const loadMoreButtonRef = useRef()
 
-      //TODO : add another checker for CurrentLoading Content
-    ) {
-      setIsEndOfPage(true);
-      console.log('End of Page');
-    }
-  }, [setIsEndOfPage]);
+  useIntersectionObserver({
+    root: null,
+    target: loadMoreButtonRef,
+    onIntersect: fetchNextPage,
+    enabled: hasNextPage,
+  })
 
-  //Adds scroll event and Remove on page end
-  useEffect(() => {
-    if (!isEndOfPage) {
-      window.addEventListener('scroll', handleEndOfPage);
-      console.log('event addedd');
-    } else {
-      window.removeEventListener('scroll', handleEndOfPage);
-      setIsEndOfPage(false);
-      //TODO FETCH MORE CONTENT
-      console.log('event removed');
-    }
-    //cleanup
-    return () => window.removeEventListener('scroll', handleEndOfPage);
-  }, [isEndOfPage]);
-
-  // Initial Posts Loading Hook
-  useEffect(() => {
-    setLoadedPosts(loadPosts());
-  }, []);
-
-  //Filter Posts
-  const loadPosts = (): IPost[] => {
-    const filteredPosts = postList.filter((post) => post.id <= 10);
-    filteredPosts.length === 10 ? setCurrentPostId(currentPostId + 10) : false;
-    return filteredPosts;
-  };
-
-  if (isLoading) return <Spinner alignSelf="center" />;
   return (
     <Stack px="2" spacing="8">
-      {loadedPosts.map((post: IPost) => (
-        <Post key={post.id} post={post} />
-      ))}
+      {status === 'error' && (
+        <Box color="red.600">Error ao buscar dados...</Box>
+      )}
+      {console.log(data)}
+      {(status === 'idle' || 'success') &&
+        data?.pages.map((page, i) => (
+          <React.Fragment key={`_${i}`}>
+            {page?.map((post: IPost) => (
+              <Post key={`${post.userId}__${post.id}`} post={post} />
+            ))}
+          </React.Fragment>
+        ))}
+      <div>
+        <button
+          ref={loadMoreButtonRef}
+          onClick={() => fetchNextPage()}
+          disabled={isFetching}
+        >
+          Carregar Mais
+        </button>
+      </div>
+      {isLoading && <Spinner alignSelf="center" />}
     </Stack>
-  );
+  )
 }
