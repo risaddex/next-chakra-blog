@@ -1,10 +1,10 @@
 import { Box, Spinner, Stack } from '@chakra-ui/react'
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
+import useIntersectionObserver from '../../hooks/useIntersectionObserver'
+import { usePosts } from '../../hooks/usePosts'
 import { IPost } from '../../types/types'
 import { Post } from './Post'
 
-import useIntersectionObserver from '../../hooks/useIntersectionObserver'
-import { usePosts } from '../../hooks/usePosts'
 
 export const Feed = () => {
   const {
