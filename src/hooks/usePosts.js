@@ -19,4 +19,19 @@ const usePosts = (id) => {
   )
 }
 
-export { fetchPosts, usePosts }
+const fetchSinglePost = async (postId) => {
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/posts/${postId}`
+  ).then((res) => {
+    if (res.ok) {
+      return res.json()
+    }
+    throw new Error('Failed on retrieve data from server')
+  })
+    .catch((err) => {
+      console.error(err)
+    })
+
+  return response
+}
+export { fetchPosts, usePosts, fetchSinglePost }
