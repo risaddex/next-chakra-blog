@@ -8,7 +8,6 @@ export const Main = (props: StackProps) => (
     spacing="1.5rem"
     alignContent="space-between"
     width="100%"
-    maxWidth="48rem"
     {...props}
   />
 )

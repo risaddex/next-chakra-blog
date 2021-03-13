@@ -1,16 +1,7 @@
-import {
-  Avatar,
-  Flex,
-  IconButton,
-  Image,
-  Spacer,
-  Wrap,
-  WrapItem,
-} from '@chakra-ui/react'
-
+import { Avatar, Flex, Image, Spacer, Wrap, WrapItem } from '@chakra-ui/react'
 import React from 'react'
 import { DarkModeSwitch } from '../DarkModeSwitch'
-import { CustomBellIcon } from '../Icons'
+import { DropdownMenu } from './Dropdown'
 
 export const Navbar = () => (
   <Flex as="nav" bg="transparent" align="center" px="4" py="2" maxHeight="70px">
@@ -28,11 +19,7 @@ export const Navbar = () => (
       </WrapItem>
 
       <WrapItem>
-        <IconButton
-          colorScheme="red"
-          aria-label="Notificações"
-          icon={<CustomBellIcon w="8" h="8" />}
-        />
+        <DropdownMenu />
       </WrapItem>
     </Wrap>
   </Flex>

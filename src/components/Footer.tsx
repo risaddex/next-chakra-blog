@@ -6,6 +6,7 @@ export const Footer = (props: FlexProps) => (
     as="footer"
     w="100%"
     h="10vh"
+    minH="50px"
     py="1rem"
     justifyContent="center"
     alignItems="center"

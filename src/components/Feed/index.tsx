@@ -27,7 +27,7 @@ export const Feed = () => {
   })
 
   return (
-    <Stack px="2" spacing="8">
+    <Stack px="2" spacing="8" w="100%">
       {status === 'error' && (
         <Box color="red.600">Error ao buscar dados...</Box>
       )}
