@@ -4,7 +4,7 @@ import useIntersectionObserver from '../../hooks/useIntersectionObserver'
 import { usePosts } from '../../hooks/usePosts'
 import { IPost } from '../../types/types'
 import { Post } from './Post'
-
+import { useInfiniteQuery } from 'react-query';
 
 export const Feed = () => {
   const {
@@ -14,10 +14,13 @@ export const Feed = () => {
     status,
     hasNextPage,
     fetchNextPage,
-    isFetchingNextPage,
-  } = usePosts(1)
+    error,
+    
+  } = usePosts()
 
-  const loadMoreButtonRef = useRef()
+  /**For typechecking shenanigans */
+  const loadMoreButtonRef = useRef() as React.MutableRefObject<HTMLButtonElement>
+
 
   useIntersectionObserver({
     root: null,
@@ -26,19 +29,21 @@ export const Feed = () => {
     enabled: hasNextPage,
   })
 
+  
+    console.log(data, hasNextPage)
+  
   return (
     <Stack px="2" spacing="8" w="100%">
-      {status === 'error' && (
-        <Box color="red.600">Error ao buscar dados...</Box>
-      )}
-      {console.log(data)}
+      {status === 'error' && <Box color="red.600">Error: {error.message}</Box>}
+
       {(status === 'idle' || 'success') &&
         data?.pages.map((page, i) => (
           <React.Fragment key={`_${i}`}>
-            {page?.map((post: IPost) => (
-              <Post key={`${post.userId}__${post.id}`} post={post} />
+            {page?.items.map((post: IPost) => (
+              <Post key={`${post.id}`} post={post} />
             ))}
           </React.Fragment>
+
         ))}
       <div>
         <button

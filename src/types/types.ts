@@ -1,6 +1,12 @@
 export interface IPost {
-  id: number
+  id: string
+  published: Date
+  updated: Date
+  url: string
   title: string
-  body: string
-  userId: number
+  content: string
+  images: string[]
+  author: {
+    displayName: string
+  }
 }

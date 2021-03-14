@@ -16,6 +16,7 @@ import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { Main } from '../components/Main'
 import { fetchPosts } from '../hooks/usePosts'
+import { fetchBloggerPosts } from '../utils/blogger'
 
 const Index = () => {
   return (
@@ -59,7 +60,7 @@ const Index = () => {
 
 export async function getStaticProps() {
   const queryClient = new QueryClient()
-  await queryClient.prefetchInfiniteQuery('posts', await fetchPosts(1))
+  await queryClient.prefetchInfiniteQuery('posts', await fetchPosts())
 
   return {
     props: {
