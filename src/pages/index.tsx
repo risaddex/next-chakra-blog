@@ -16,11 +16,10 @@ import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { Main } from '../components/Main'
 import { fetchPosts } from '../hooks/usePosts'
-import { fetchBloggerPosts } from '../utils/blogger'
 
 const Index = () => {
   return (
-    <Container overflowX="auto" justifyContent={['center']}>
+    <Container bg="whiteAlpha.50" overflowX="auto" justifyContent={['center']}>
       <Header />
 
       <Grid
@@ -34,12 +33,12 @@ const Index = () => {
           <Box d={['none', 'flex']}>qaaa</Box>
         </GridItem>
         <GridItem colSpan={[4, 3]}>
-          <Main bg="blue.500" px="1" pb="2" height="100%" minH="100vh">
-            <Box p="5">
+          <Main fontFamily="inter" px="1" pb="2" height="100%" minH="100vh">
+            {/* <Box p="5">
               <SkeletonText noOfLines={10} />
-            </Box>
+            </Box> */}
             {/* <CustomCarousel /> */}
-            <Feed />
+            <Feed/>
           </Main>
         </GridItem>
       </Grid>

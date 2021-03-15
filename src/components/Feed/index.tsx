@@ -34,7 +34,7 @@ export const Feed = () => {
   
   return (
     <Stack px="2" spacing="8" w="100%">
-      {status === 'error' && <Box color="red.600">Error: {error.message}</Box>}
+      {status === 'error' && <Box color="red.50">Error: {error.message}</Box>}
 
       {(status === 'idle' || 'success') &&
         data?.pages.map((page, i) => (

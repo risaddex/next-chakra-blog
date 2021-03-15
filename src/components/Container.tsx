@@ -4,9 +4,9 @@ import React from 'react'
 export const Container = (props: FlexProps) => {
   const { colorMode } = useColorMode()
 
-  const bgColor = { light: 'gray.50', dark: 'gray.900' }
+  const bgColor = { light: 'gray.50', dark: 'gray.800' }
+  const color = { light: 'gray.900', dark: 'white' }
 
-  const color = { light: 'black', dark: 'white' }
   return (
     <Flex
       direction="column"

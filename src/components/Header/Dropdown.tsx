@@ -37,7 +37,7 @@ export function DropdownMenu() {
             <DrawerHeader>Create your account</DrawerHeader>
 
             <DrawerBody>
-              <Input placeholder="Type here..." />
+              <Input placeholder="Wellington viadinho" />
             </DrawerBody>
 
             <DrawerFooter>

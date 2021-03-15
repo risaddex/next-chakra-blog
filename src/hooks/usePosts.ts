@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from 'react-query'
 
-const BLOG_ID = String(process.env.NEXT_PUBLIC_BLOG_ID)
-const API_KEY = String(process.env.NEXT_PUBLIC_API_KEY)
+const BLOG_ID = '7623356520889702488' //String(process.env.NEXT_PUBLIC_BLOG_ID)
+const API_KEY = 'AIzaSyDqMICIK916FZyD9Fc9cTHoc5ist_KiiuA' //String(process.env.NEXT_PUBLIC_API_KEY)
 
 const fetchPosts = async (pageParam?: string) => {
   const response = await fetch(
@@ -33,6 +33,7 @@ const usePosts = () => {
     getNextPageParam: (firstPage) => firstPage.nextPageToken ?? false,
     getPreviousPageParam: (lastPage) => lastPage.prevPageToken ?? false,
     refetchOnWindowFocus: false,
+    refetchInterval: false,
     onError: (err) => console.error(err),
   })
 }
