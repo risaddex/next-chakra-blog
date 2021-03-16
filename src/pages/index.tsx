@@ -2,15 +2,14 @@ import {
   Box,
   Grid,
   GridItem,
-  Skeleton,
-  SkeletonText,
-  Text,
+
+
+  Text
 } from '@chakra-ui/react'
 import React from 'react'
 import { QueryClient } from 'react-query'
 import { dehydrate } from 'react-query/hydration'
 import { Container } from '../components/Container'
-import { CustomCarousel } from '../components/CustomCarousel'
 import { Feed } from '../components/Feed'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'

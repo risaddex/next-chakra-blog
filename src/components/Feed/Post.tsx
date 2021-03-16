@@ -1,9 +1,8 @@
-import { PlusSquareIcon } from '@chakra-ui/icons'
-import { Box, Flex, Heading, IconButton, Spacer, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, IconButton, Text } from '@chakra-ui/react'
 import React from 'react'
 import { IPost } from '../../types/types'
-import { parseRelativeTime, parseTime } from '../../utils/timeFormat'
 import parseToMarkdown from '../../utils/markdown'
+import { parseRelativeTime, parseTime } from '../../utils/timeFormat'
 import { ShareIcon } from '../Icons/Share'
 
 export const Post = ({ post }: { post: IPost }) => {

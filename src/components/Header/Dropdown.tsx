@@ -15,7 +15,8 @@ import { useRef } from 'react'
 
 export function DropdownMenu() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = useRef()
+  /** //?Reference for React mutable object */
+  const btnRef = useRef<HTMLButtonElement>(null)
 
   return (
     <>
@@ -23,7 +24,8 @@ export function DropdownMenu() {
         ref={btnRef}
         colorScheme="transparent"
         onClick={onOpen}
-        icon={<HamburgerIcon w="8" h="8"  />}
+        icon={<HamburgerIcon w="8" h="8"/>}
+        aria-label="toggle drawer"
       />
       <Drawer
         isOpen={isOpen}

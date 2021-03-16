@@ -7,7 +7,7 @@ import theme from '../theme'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const queryClientRef = React.useRef()
+  const queryClientRef = React.useRef<QueryClient>()
   if (!queryClientRef.current) {
     queryClientRef.current = new QueryClient()
   }

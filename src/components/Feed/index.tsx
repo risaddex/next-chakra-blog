@@ -2,9 +2,8 @@ import { Box, Spinner, Stack } from '@chakra-ui/react'
 import React, { useRef } from 'react'
 import useIntersectionObserver from '../../hooks/useIntersectionObserver'
 import { usePosts } from '../../hooks/usePosts'
-import { IPost } from '../../types/types'
+import { IPost, isError } from '../../types/types'
 import { Post } from './Post'
-import { useInfiniteQuery } from 'react-query';
 
 export const Feed = () => {
   const {
@@ -34,7 +33,10 @@ export const Feed = () => {
   
   return (
     <Stack px="2" spacing="8" w="100%">
-      {status === 'error' && <Box color="red.50">Error: {error.message}</Box>}
+      {/* //? to guarantee Error is from type Error */}
+      {status === 'error' && isError(error) && (
+        <Box color="red.50">Error: {error.message}</Box>
+      )}
 
       {(status === 'idle' || 'success') &&
         data?.pages.map((page, i) => (
@@ -43,7 +45,6 @@ export const Feed = () => {
               <Post key={`${post.id}`} post={post} />
             ))}
           </React.Fragment>
-
         ))}
       <div>
         <button

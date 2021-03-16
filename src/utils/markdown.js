@@ -18,7 +18,7 @@ export default function parseToMarkdown(input) {
   const markdown = turndownService.turndown(input)
 
   const renderers = {
-    link: props => <Link href={props.href} target="_blank">{props.children}</Link>
+    link: props => <Link colorScheme="red" href={props.href} target="_blank">{props.children}</Link>
   }
   
   return (
